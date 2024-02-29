@@ -50,6 +50,47 @@ class TestEngine(unittest.TestCase):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
         self.assertEqual(engine.get_second_row(), [2, 4, 0])
-    
+
+
+    def test_get_next_element_1(self):
+        table = [[1, 31, 0], [10, 1030, 0]]
+        engine = Engine([1])
+        res = engine.get_next_element(table, 2, 0)
+        self.assertEqual(res, -72)
+
+        res = engine.get_next_element(table, 2, 1)
+        self.assertEqual(res, 0)
+
+        table = [[1, 31, 0], [1, 103, 0], [-72, 0, 0]]
+
+        res = engine.get_next_element(table, 3, 0)
+        self.assertEqual(res, 103)
+
+        res = engine.get_next_element(table, 3, 1)
+        self.assertEqual(res, 0)
+
+
+
+    def test_get_next_element_2(self):
+        coefficients_array = [1]
+        engine = Engine(coefficients_array)
+        table = [[1, 3, 5, 0], [2, 4, 0, 0]]
+        res = engine.get_next_element(table, 2, 0)
+        self.assertEqual(res, 1)
+
+        res = engine.get_next_element(table, 2, 1)
+        self.assertEqual(res, 5)
+
+        table = [[1, 3, 5, 0], [2, 4, 0, 0], [1, 5, 0]]
+        res = engine.get_next_element(table, 3, 0)
+        self.assertEqual(res, -6)
+
+        res = engine.get_next_element(table, 3, 1)  
+        self.assertEqual(res, 0)
+
+        table = [[1, 3, 5, 0], [2, 4, 0, 0], [1, 5, 0, 0], [-6, 0, 0, 0]]
+        res = engine.get_next_element(table, 4, 0)
+        self.assertEqual(res, 5)
+
 if __name__ == '__main__':
     unittest.main()

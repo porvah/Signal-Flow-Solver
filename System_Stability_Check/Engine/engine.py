@@ -17,6 +17,7 @@ class RoutheEngine (object):
         table.append(self.coefficients_array)
         table.append(self.get_first_row())
         table.append(self.get_second_row())
+        pass
         return table
     
     def get_first_row(self):
@@ -24,5 +25,10 @@ class RoutheEngine (object):
     
     def get_second_row(self):
         return [ele for i, ele in enumerate(self.coefficients_array) if i % 2 != 0] + [0]
+    
+    def get_next_element(self, table, i, j):
+        up_left, down_left = table[i-2][0], table[i-1][0]
+        up_right, down_right = table[i-2][j+1], table[i-1][j+1]
+        return  -1 * (up_left * down_right - up_right * down_left) / down_left
     
     
