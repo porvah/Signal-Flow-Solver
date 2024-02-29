@@ -10,11 +10,35 @@ from Engine.engine import RoutheEngine as Engine
 
 
 class TestEngine(unittest.TestCase):
-    def test_constructor(self):
+    def test_constructor_1(self):
         coefficients_array = [1, 2, 3, 4]
         engine = Engine(coefficients_array)
         self.assertEqual(engine.coefficients_array, coefficients_array)
         self.assertEqual(engine.degree, 3)
+
+    def test_constructor_2(self):
+        coefficients_array = [1, 2, 3, 4, 5]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.coefficients_array, coefficients_array)
+        self.assertEqual(engine.degree, 4)
+
+    def test_constructor_3(self):
+        coefficients_array = [1]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.coefficients_array, coefficients_array)
+        self.assertEqual(engine.degree, 0)
+
+    def test_constructor_4(self):
+        coefficients_array = [0, 0, 0, 0]
+        try:
+            engine = Engine(coefficients_array)
+        except ValueError as e:
+            self.assertEqual(str(e), "Degree of the polynomial should be greater than or equal to 0")
+
+    def test_constructor_5(self):
+        coefficients_array = [0, 0, 2, 1]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.coefficients_array, [2, 1])
 
     def test_same_sign_coefficients_1(self):
         coefficients_array = [1, 2, 3, 4]

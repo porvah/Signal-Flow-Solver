@@ -1,14 +1,26 @@
 class RoutheEngine (object):
     def __init__(self, coefficients_array):
         self.coefficients_array = coefficients_array
+        self.simplify_coeffecient()
         self.degree = len(coefficients_array) - 1
+        if self.degree < 0:
+            raise ValueError("Degree of the polynomial should be greater than or equal to 0")
 
     def check_stability(self):
+        
         if(not self.check_same_sign_coefficients(self.coefficients_array)):
             return False
         
         table = self.get_routhe_table()
         return self.get_number_of_sign_changes(table) == 0
+    def simplify_coeffecient(self):
+        i = 0
+        while i < len(self.coefficients_array):
+            if self.coefficients_array[i] == 0:
+                i += 1
+            else:
+                break
+        self.coefficients_array = self.coefficients_array[i:]
     
     def get_number_of_sign_changes(self, table):
         return len([i for i in range(len(table) - 1) if table[i][0] * table[i + 1][0] < 0])
