@@ -14,11 +14,13 @@ class RoutheEngine (object):
     
     def get_routhe_table(self):
         table = []
-        table.append(self.coefficients_array)
         table.append(self.get_first_row())
         table.append(self.get_second_row())
-        pass
+        
+        for i in range(2, self.degree + 1):
+            table.append(self.get_next_row(table, i))
         return table
+        
     
 
     def get_next_row(self, table, row_index):

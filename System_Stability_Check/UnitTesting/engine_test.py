@@ -118,6 +118,12 @@ class TestEngine(unittest.TestCase):
         table += [res]
         res = engine.get_next_row(table, 3)
         self.assertEqual(res, [103, 0, 0])
+
+    def test_get_routhe_table_1(self):
+        coefficients_array = [1, 2, 3, 4, 5]
+        engine = Engine(coefficients_array)
+        res = engine.get_routhe_table()
+        self.assertEqual(res, [[1, 3, 5, 0], [2, 4, 0], [1, 5, 0], [-6, 0, 0], [5, 0, 0]])
         
 
 if __name__ == '__main__':
