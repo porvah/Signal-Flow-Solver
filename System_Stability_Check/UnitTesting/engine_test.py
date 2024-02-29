@@ -30,7 +30,26 @@ class TestEngine(unittest.TestCase):
         coefficients_array = [1, -2, 3, -4]
         engine = Engine(coefficients_array)
         self.assertFalse(engine.check_same_sign_coefficients(coefficients_array))
-        
+
+    def test_get_first_row_1(self):
+        coefficients_array = [1, 2, 3, 4]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.get_first_row(), [1, 3, 0])
+    
+    def test_get_first_row_2(self):
+        coefficients_array = [1, 2, 3, 4, 5]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.get_first_row(), [1, 3, 5, 0])
+    
+    def test_get_second_row_1(self):
+        coefficients_array = [1, 2, 3, 4]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.get_second_row(), [2, 4, 0])
+    
+    def test_get_second_row_2(self):
+        coefficients_array = [1, 2, 3, 4, 5]
+        engine = Engine(coefficients_array)
+        self.assertEqual(engine.get_second_row(), [2, 4, 0])
     
 if __name__ == '__main__':
     unittest.main()
