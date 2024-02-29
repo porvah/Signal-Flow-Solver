@@ -6,6 +6,12 @@ class RoutheEngine (object):
     def check_stability(self):
         if(not self.check_same_sign_coefficients(self.coefficients_array)):
             return False
+        
+        table = self.get_routhe_table()
+        return self.get_number_of_sign_changes(table) == 0
+    
+    def get_number_of_sign_changes(self, table):
+        return len([i for i in range(len(table) - 1) if table[i][0] * table[i + 1][0] < 0])
     
         
         

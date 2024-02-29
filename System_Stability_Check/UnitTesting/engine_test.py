@@ -124,6 +124,27 @@ class TestEngine(unittest.TestCase):
         engine = Engine(coefficients_array)
         res = engine.get_routhe_table()
         self.assertEqual(res, [[1, 3, 5, 0], [2, 4, 0], [1, 5, 0], [-6, 0, 0], [5, 0, 0]])
+
+    def test_get_routhe_table_2(self):
+        coefficients_array = [1, 10, 31, 1030]
+        engine = Engine(coefficients_array)
+        res = engine.get_routhe_table()
+        self.assertEqual(res, [[1, 31, 0], [10, 1030, 0], [-72, 0, 0], [1030, 0, 0]]) # without the second row by 10 as in reference
+
+
+    def test_get_number_of_sign_changes_1(self):
+        coefficients_array = [1, 2, 3, 4, 5]
+        engine = Engine(coefficients_array)
+        table = [[1, 3, 5, 0], [2, 4, 0], [1, 5, 0], [-6, 0, 0], [5, 0, 0]]
+        res = engine.get_number_of_sign_changes(table)
+        self.assertEqual(res, 2)
+
+    def test_get_number_of_sign_changes_2(self):
+        coefficients_array = [1, 10, 31, 1030]
+        engine = Engine(coefficients_array)
+        table = [[1, 31, 0], [10, 1030, 0], [-72, 0, 0], [1030, 0, 0]]
+        res = engine.get_number_of_sign_changes(table)
+        self.assertEqual(res, 2)
         
 
 if __name__ == '__main__':
