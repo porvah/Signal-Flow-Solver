@@ -1,3 +1,6 @@
+import numpy
+
+
 class RoutheEngine (object):
     def __init__(self, coefficients_array):
         self.coefficients_array = coefficients_array
@@ -7,12 +10,11 @@ class RoutheEngine (object):
             raise ValueError("Degree of the polynomial should be greater than or equal to 0")
 
     def check_stability(self):
-        
         if(not self.check_same_sign_coefficients(self.coefficients_array)):
             return False
-        
         table = self.get_routhe_table()
         return self.get_number_of_sign_changes(table) == 0
+    
     def simplify_coeffecient(self):
         i = 0
         while i < len(self.coefficients_array):
@@ -24,21 +26,17 @@ class RoutheEngine (object):
     
     def get_number_of_sign_changes(self, table):
         return len([i for i in range(len(table) - 1) if table[i][0] * table[i + 1][0] < 0])
-    
-        
         
     def check_same_sign_coefficients(self, coefficients_array):
         arr = coefficients_array[:]
         while arr and arr[-1] == 0:
             arr.pop()
-
         return all(x > 0 for x in arr) or all(x < 0 for x in arr)
     
     def get_routhe_table(self):
         table = []
         table.append(self.get_first_row())
         table.append(self.get_second_row())
-        
         for i in range(2, self.degree + 1):
             table.append(self.get_next_row(table, i))
         return table
@@ -64,4 +62,8 @@ class RoutheEngine (object):
         up_right, down_right = table[i-2][j+1], table[i-1][j+1]
         return  -1 * (up_left * down_right - up_right * down_left) / down_left
     
-    
+    def get_poles(self):
+        sol = numpy.roots(self.coefficients_array)
+        sol = [x for x in sol if x.real > 0]
+        assert len(sol) == self.get_number_of_sign_changes(self.get_routhe_table()), f'Number of poles should be equal to the number of sign changes in the routhe table. Expected {self.get_number_of_sign_changes(self.get_routhe_table())}  computed from {self.get_routhe_table()}but got {len(sol)} '
+        return sol
