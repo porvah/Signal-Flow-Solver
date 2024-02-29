@@ -92,5 +92,33 @@ class TestEngine(unittest.TestCase):
         res = engine.get_next_element(table, 4, 0)
         self.assertEqual(res, 5)
 
+
+    def test_get_next_row_1(self):
+        coefficients_array = [1]
+        engine = Engine(coefficients_array)
+        table = [[1, 3, 5, 0], [2, 4, 0, 0]]
+        res = engine.get_next_row(table, 2)
+        self.assertEqual(res, [1, 5, 0, 0])
+
+    def test_get_next_row_2(self):
+        coefficients_array = [1]
+        engine = Engine(coefficients_array)
+        table = [[1, 3, 5, 0], [2, 4, 0, 0], [1, 5, 0, 0]]
+        res = engine.get_next_row(table, 3)
+        self.assertEqual(res, [-6, 0, 0, 0])
+
+    def test_get_next_row_3(self):
+        coefficients_array = [1, 10, 31, 1030]
+        engine = Engine(coefficients_array)
+        table = [[1, 31, 0], [10, 1030, 0]]
+        table[1] = [i / 10 for i in table[1]]
+        res = engine.get_next_row(table, 2)
+        self.assertEqual(res, [-72, 0, 0])
+
+        table += [res]
+        res = engine.get_next_row(table, 3)
+        self.assertEqual(res, [103, 0, 0])
+        
+
 if __name__ == '__main__':
     unittest.main()

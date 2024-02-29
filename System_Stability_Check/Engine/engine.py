@@ -20,6 +20,15 @@ class RoutheEngine (object):
         pass
         return table
     
+
+    def get_next_row(self, table, row_index):
+        previous_row = table[row_index - 1]
+        next_row = []
+        for i in range(len(previous_row) - 1):
+            next_row.append(self.get_next_element(table, row_index, i))
+        next_row.append(0)
+        return next_row
+    
     def get_first_row(self):
         return [ele for i, ele in enumerate(self.coefficients_array) if i % 2 == 0] + [0]
     
