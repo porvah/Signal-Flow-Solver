@@ -206,10 +206,13 @@ class TestEngine(unittest.TestCase):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
         try:
-            res = engine.get_poles()
+            engine.get_poles()
         except AssertionError as e:
-            self.assertEqual(str(e),'Number of poles should be equal to the number of sign changes in the routhe table. Expected {self.get_number_of_sign_changes(self.get_routhe_table())}  computed from {self.get_routhe_table()}but got {len(sol)} ')
+            self.assertFalse(True)
+        res = engine.get_poles()
         self.assertTrue(all(x.real > 0 for x in res))
+        
+        
         
 
 
