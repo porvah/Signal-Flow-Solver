@@ -16,7 +16,11 @@ class RoutheEngine (object):
         
         
     def check_same_sign_coefficients(self, coefficients_array):
-        return all(x > 0 for x in coefficients_array) or all(x < 0 for x in coefficients_array)
+        arr = coefficients_array[:]
+        while arr and arr[-1] == 0:
+            arr.pop()
+
+        return all(x > 0 for x in arr) or all(x < 0 for x in arr)
     
     def get_routhe_table(self):
         table = []

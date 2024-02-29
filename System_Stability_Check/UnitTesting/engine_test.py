@@ -165,5 +165,18 @@ class TestEngine(unittest.TestCase):
         res = engine.check_stability()
         self.assertTrue(res)        
 
+    
+    def test_check_stability_4(self):
+        coefficients_array = [1, 0, 3, 2, 5]
+        engine = Engine(coefficients_array)
+        res = engine.check_stability()
+        self.assertFalse(res)
+
+    def test_check_stability_5(self):
+        coefficients_array = [1, 1, 3, 1, 0]
+        engine = Engine(coefficients_array)
+        res = engine.check_stability()
+        self.assertTrue(res)
+
 if __name__ == '__main__':
     unittest.main()
