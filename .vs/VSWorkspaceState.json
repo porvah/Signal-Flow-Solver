@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Signal_Flow_solver",
+    "\\Signal_Flow_solver\\Signal_flow",
+    "\\Signal_Flow_solver\\Signal_flow\\core",
+    "\\Signal_Flow_solver\\Signal_flow\\core\\headers",
+    "\\Signal_Flow_solver\\Signal_flow\\core\\headers\\logic",
+    "\\Signal_Flow_solver\\Signal_flow\\core\\headers\\models",
+    "\\Signal_Flow_solver\\Signal_flow\\core\\src",
+    "\\Signal_Flow_solver\\Signal_flow\\core\\src\\logic",
+    "\\Signal_Flow_solver\\Signal_flow\\core\\src\\models"
   ],
-  "SelectedNode": "\\core.sln",
+  "SelectedNode": "\\Signal_Flow_solver\\Signal_flow\\core\\core.sln",
   "PreviewInSolutionExplorer": false
 }

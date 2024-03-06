@@ -144,10 +144,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="utilities\module1.cpp" />
+    <ClCompile Include="src\logic\ForwardPaths.cpp" />
+    <ClCompile Include="src\models\Graph.cpp" />
+    <ClCompile Include="src\models\path.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\module1.h" />
+    <ClInclude Include="headers\logic\ForwardPaths.h" />
+    <ClInclude Include="headers\models\Graph.h" />
+    <ClInclude Include="headers\models\path.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

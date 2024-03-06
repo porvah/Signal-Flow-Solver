@@ -1,0 +1,46 @@
+#include "../../headers/models/path.h"
+
+path::path()
+{
+	nodes = vector<string>();
+	gains = vector<double>();
+	gain = 1;
+	gains.push_back(1);
+}
+
+void path::addNode(string node)
+{
+	nodes.push_back(node);
+}
+
+void path::removeNode()
+{
+	nodes.pop_back();
+}
+
+void path::removeGain()
+{
+	gains.pop_back();
+}
+
+vector<string> path::getNodes()
+{
+	return nodes;
+}
+
+void path::addGain(double nodeGain)
+{
+	gains.push_back(nodeGain);
+}
+
+void path::ClaculateGain()
+{
+	gain = 1;
+	for (int i = 0; i < gains.size(); i++)
+		gain *= gains[i];
+}
+
+double path::getGain() 
+{
+	return gain;
+}
