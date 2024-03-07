@@ -17,12 +17,14 @@ int main() {
 	g.connect("y4", "y3", -1);
 	g.connect("y4", "y5", 2);
 	g.connect("y5", "y4", -2);
+	g.connect("y5", "y2", -1);
 	g.connect("y5", "end", 1);
 	g.connect("y6", "y5", 2);
 	g.connect("y6", "y6", -1);
 	map<string, vector<pair<string, double>>> mp = g.getGraph();
 	g.CalculatePaths();
 	vector<pair<path, double>> v = g.getPaths();
+	cout << "Graph:" << endl;
 	for (auto const& x : mp)
 	{
 		cout << x.first << ':';
@@ -32,13 +34,26 @@ int main() {
 		}
 		cout << "\n";
 	}
+	cout << "Forward Paths:" << endl;
 	for (int i = 0; i < v.size(); i++) {
 		for (int j = 0; j < v[i].first.getNodes().size(); j++) {
 			cout << v[i].first.getNodes()[j] << ",";
 		}
 		cout << v[i].second << endl;
 	}
+	cout << "Loops:" << endl;
+	g.CalculateLoops();
+	map<string, pair<path, double>> loops = g.getLoops();
+	for (auto const& x : loops)
+	{
+		cout << x.first << ':';
+		for (int i = 0; i < loops [x.first].first.getNodes().size() ; i++) {
+			cout << loops[x.first].first.getNodes()[i] << ",";
 
+		}
+		cout << "gain =" << loops[x.first].second;
+		cout << "\n";
+	}
 	
 	return 0;
 

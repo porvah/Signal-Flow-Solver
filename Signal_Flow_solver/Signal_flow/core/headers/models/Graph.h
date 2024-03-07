@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include "../logic/ForwardPaths.h"
+#include "../logic/Loops.h"
 #include <string>
 using namespace std;
 
@@ -11,6 +12,7 @@ class Graph {
    private: 
 	   map <string,vector<pair<string, double>>> graph;
 	   ForwardPaths forwardPaths;
+	   Loops loops;
    
    public:
 
@@ -21,6 +23,10 @@ class Graph {
 	   void CalculatePaths();
 
 	   vector<pair<path,double>> getPaths();
+
+	   void CalculateLoops();
+
+	   map<string, pair<path, double>> getLoops();
 
 	   map <string, vector<pair<string, double>>> getGraph();
 	   

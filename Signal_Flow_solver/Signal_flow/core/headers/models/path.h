@@ -17,6 +17,7 @@ public:
     void removeNode();
     void removeGain();
     vector<string> getNodes();
+    vector<double> getgains();
     void addGain(double nodeGain);
     void ClaculateGain();
     double getGain();

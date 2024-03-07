@@ -144,12 +144,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="src\logic\DFS.cpp" />
     <ClCompile Include="src\logic\ForwardPaths.cpp" />
+    <ClCompile Include="src\logic\Loops.cpp" />
     <ClCompile Include="src\models\Graph.cpp" />
     <ClCompile Include="src\models\path.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\logic\DFS.h" />
     <ClInclude Include="headers\logic\ForwardPaths.h" />
+    <ClInclude Include="headers\logic\Loops.h" />
     <ClInclude Include="headers\models\Graph.h" />
     <ClInclude Include="headers\models\path.h" />
   </ItemGroup>

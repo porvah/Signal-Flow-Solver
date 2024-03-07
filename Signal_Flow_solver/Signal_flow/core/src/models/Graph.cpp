@@ -22,6 +22,16 @@ vector<pair<path, double>> Graph::getPaths()
 	
 }
 
+void Graph::CalculateLoops()
+{
+	loops.CalculateLoops(graph);
+}
+
+map<string, pair<path, double>> Graph::getLoops()
+{
+	return loops.getLoops();
+}
+
 map<string, vector<pair<string, double>>> Graph::getGraph()
 {
 	return graph;

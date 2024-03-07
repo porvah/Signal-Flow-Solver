@@ -16,6 +16,7 @@ void path::removeNode()
 	nodes.pop_back();
 }
 
+
 void path::removeGain()
 {
 	gains.pop_back();
@@ -24,6 +25,11 @@ void path::removeGain()
 vector<string> path::getNodes()
 {
 	return nodes;
+}
+
+vector<double> path::getgains()
+{
+	return gains;
 }
 
 void path::addGain(double nodeGain)
