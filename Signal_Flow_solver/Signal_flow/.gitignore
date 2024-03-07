@@ -18,7 +18,7 @@
 .#*
 *.*#
 core
-.vs/
+/core/.vs/
 !core/
 tags
 .DS_Store
