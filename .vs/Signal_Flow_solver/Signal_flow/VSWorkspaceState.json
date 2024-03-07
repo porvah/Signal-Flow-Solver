@@ -1,8 +1,0 @@
-{
-  "OutputFoldersPerTargetSystem": {
-    "Local Machine": [
-      "Signal_Flow_solver\\Signal_flow\\out\\build\\x64-Debug",
-      "Signal_Flow_solver\\Signal_flow\\out\\install\\x64-Debug"
-    ]
-  }
-}

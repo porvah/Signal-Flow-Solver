@@ -1,4 +1,0 @@
-{
-  "enableCMake": true,
-  "sourceDirectory": "signal_flow_solver\\signal_flow"
-}

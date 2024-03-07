@@ -69,3 +69,9 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
+
+/out/
+out/
+
+/.vs/
+.vs/
