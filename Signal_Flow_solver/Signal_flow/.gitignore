@@ -18,6 +18,7 @@
 .#*
 *.*#
 core
+/core/.vs/
 !core/
 tags
 .DS_Store
@@ -50,15 +51,11 @@ CMakeLists.txt.user*
 *.idb
 *.ilk
 *.pdb
-*.sln
+
 *.suo
-*.vcproj
-*vcproj.*.*.user
 *.ncb
 *.sdf
 *.opensdf
-*.vcxproj
-*vcxproj.*
 
 # MinGW generated files
 *.Debug
@@ -72,3 +69,11 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
+
+/out/
+out/
+
+/.vs/
+.vs/
+
+/core/.vs/
