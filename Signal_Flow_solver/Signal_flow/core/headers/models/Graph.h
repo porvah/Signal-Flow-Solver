@@ -13,7 +13,6 @@ class Graph {
 	   ForwardPaths forwardPaths;
    
    public:
-	   Graph();
 
 	   void addNode(string node);
 

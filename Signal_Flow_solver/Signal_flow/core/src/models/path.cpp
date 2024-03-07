@@ -2,8 +2,6 @@
 
 path::path()
 {
-	nodes = vector<string>();
-	gains = vector<double>();
 	gain = 1;
 	gains.push_back(1);
 }

@@ -1,13 +1,8 @@
 #include "../../headers/logic/ForwardPaths.h"
-using namespace std;
-
-ForwardPaths::ForwardPaths()
-{
-	paths = vector<pair<path,double>>();
-}
 
 
-void ForwardPaths::CalculateFrorwardPaths(string start, string end, map<string, vector<pair<string, double>>>& graph) 
+
+void ForwardPaths::CalculateFrorwardPaths(const string& start,const string& end, map<string, vector<pair<string, double>>>& graph) 
 {
 	path p;
 	unordered_set <string> visited;
@@ -21,7 +16,7 @@ vector<pair<path,double>> ForwardPaths::getFrorwardPaths()
 	return paths;
 }
 
-void ForwardPaths::DFS(string start, string end, path& p, unordered_set<string>& visited, map<string, vector<pair<string, double>>>& graph)
+void ForwardPaths::DFS(const string& start, const string& end, path& p, unordered_set<string>& visited, map<string, vector<pair<string, double>>>& graph)
 {
 	visited.insert(start);
 	p.addNode(start);

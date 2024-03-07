@@ -13,14 +13,12 @@ class ForwardPaths {
 	  vector<pair<path,double>> paths;
 
 public:
-	ForwardPaths();
 
-
-	void CalculateFrorwardPaths(string start, string end, map <string, vector<pair<string, double>>>& graph);
+	void CalculateFrorwardPaths(const string& start, const string& end, map <string, vector<pair<string, double>>>& graph);
 
 	vector<pair<path,double>> getFrorwardPaths();
 
-	void DFS(string start, string end, path& p, unordered_set<string>& visited, map <string, vector<pair<string, double>>>& graph);
+	void DFS(const string& start,const string& end, path& p, unordered_set<string>& visited, map <string, vector<pair<string, double>>>& graph);
 
 
 };

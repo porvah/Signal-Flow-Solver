@@ -1,11 +1,5 @@
 #include "../../headers/models/Graph.h"
-using namespace std;
 
-Graph::Graph()
-{
-	graph = map<string, vector<pair<string, double>>>();
-
-}
 
 void Graph::addNode(string node)
 {
