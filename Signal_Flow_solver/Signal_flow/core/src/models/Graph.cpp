@@ -46,3 +46,28 @@ vector<vector<pair<string, double>>> Graph::getNonTouched()
 {
 	return loops.getNonTouching();
 }
+
+void Graph::CalculateDeltas()
+{
+	result.CalculateDeltas(forwardPaths.getFrorwardPaths(),loops.getLoops());
+}
+
+vector<pair<string, double>> Graph::getDeltas()
+{
+	return result.getDeltas();
+}
+
+void Graph::CalculateDelta()
+{
+	result.CalculateDelta(loops.getLoops(), loops.getNonTouching());
+}
+
+double Graph::getDelta()
+{
+	return result.getDelta();
+}
+
+double Graph::getSystemTransferFunction()
+{
+	return result.CalculateTransferFunction(forwardPaths.getFrorwardPaths());
+}

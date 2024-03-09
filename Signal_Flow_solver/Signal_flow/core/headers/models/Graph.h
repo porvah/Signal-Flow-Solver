@@ -5,6 +5,7 @@
 #include <map>
 #include "../logic/ForwardPaths.h"
 #include "../logic/Loops.h"
+#include "../algorithms/SystemResults.h"
 #include <string>
 using namespace std;
 
@@ -13,6 +14,7 @@ class Graph {
 	   map <string,vector<pair<string, double>>> graph;
 	   ForwardPaths forwardPaths;
 	   Loops loops;
+	   SystemResults result;
    
    public:
 
@@ -33,6 +35,16 @@ class Graph {
 	   void CalculateNonTouched();
 
 	   vector<vector<pair<string, double>>> getNonTouched();
+
+	   void CalculateDeltas();
+
+	   vector<pair<string, double>> getDeltas();
+
+	   void CalculateDelta();
+
+	   double getDelta();
+
+	   double getSystemTransferFunction();
 	   
 
 

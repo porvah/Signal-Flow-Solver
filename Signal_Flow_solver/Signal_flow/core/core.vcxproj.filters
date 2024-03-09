@@ -36,6 +36,9 @@
     <ClCompile Include="src\algorithms\NonTouched.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\algorithms\SystemResults.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\logic\ForwardPaths.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\algorithms\NonTouched.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\algorithms\SystemResults.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

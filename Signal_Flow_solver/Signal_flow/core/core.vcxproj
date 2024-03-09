@@ -146,6 +146,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="src\algorithms\DFS.cpp" />
     <ClCompile Include="src\algorithms\NonTouched.cpp" />
+    <ClCompile Include="src\algorithms\SystemResults.cpp" />
     <ClCompile Include="src\logic\ForwardPaths.cpp" />
     <ClCompile Include="src\logic\Loops.cpp" />
     <ClCompile Include="src\models\Graph.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="headers\algorithms\DFS.h" />
     <ClInclude Include="headers\algorithms\NonTouched.h" />
+    <ClInclude Include="headers\algorithms\SystemResults.h" />
     <ClInclude Include="headers\logic\ForwardPaths.h" />
     <ClInclude Include="headers\logic\Loops.h" />
     <ClInclude Include="headers\models\Graph.h" />

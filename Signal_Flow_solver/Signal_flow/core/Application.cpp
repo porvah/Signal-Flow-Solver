@@ -104,7 +104,17 @@ int main() {
 			cout << "\n";
 		}
 	}
-	
+	cout << "Deltas:" << endl;
+	g.CalculateDeltas();
+	vector<pair<string, double>> deltas = g.getDeltas();
+	for (int i = 0; i < deltas.size(); i++) {
+		cout << deltas[i].first << "=";
+		cout << deltas[i].second << endl;
+	}
+	cout << "Delta=";
+	g.CalculateDelta();
+	cout << g.getDelta() << endl;
+	cout << "Transfer Function ="<< g.getSystemTransferFunction();
 	return 0;
 
 	// test comment delete me if you find me
