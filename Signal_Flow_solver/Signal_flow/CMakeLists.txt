@@ -14,9 +14,16 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        src/windows/mainwindow.cpp
+        headers/windows/mainwindow.h
+	src/widgets/toolbar.cpp
+        src/widgets/canvas.cpp
+	src/widgets/output.cpp
+	src/widgets/workspace.cpp
+	headers/widgets/toolbar.h
+        headers/widgets/canvas.h
+	headers/widgets/output.h
+	headers/widgets/workspace.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
