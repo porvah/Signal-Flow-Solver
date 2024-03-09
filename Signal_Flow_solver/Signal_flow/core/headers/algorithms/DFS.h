@@ -1,8 +1,8 @@
 #ifndef DFS_H
 #define DFS_H
 #include <iostream>
-#include "ForwardPaths.h"
-#include "Loops.h"
+#include "../logic/ForwardPaths.h"
+#include "../logic/Loops.h"
 #include "unordered_set"
 #include "map"
 class DFS {

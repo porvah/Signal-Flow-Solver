@@ -24,6 +24,17 @@ map<string, pair<path, double>> Loops::getLoops()
 	return loopsID;
 }
 
+void Loops::CalculateNonTouching(int nodesNum)
+{
+	NonTouched nonTouched;
+	nonTouched.FindNontouched(loopsID, nontouched,nodesNum);
+}
+
+vector<vector<pair<string, double>>> Loops::getNonTouching()
+{
+	return nontouched;
+}
+
 
 
 

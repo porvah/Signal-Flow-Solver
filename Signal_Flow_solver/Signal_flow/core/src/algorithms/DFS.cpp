@@ -1,4 +1,4 @@
-#include "../../headers/logic/DFS.h"
+#include "../../headers/algorithms/DFS.h"
 
 
 void DFS::dfs(const string& start, const string& end, path& p, unordered_set<string>& visited, vector<pair<path, double>>& paths, map<string, vector<pair<string, double>>>& graph,bool indicator)

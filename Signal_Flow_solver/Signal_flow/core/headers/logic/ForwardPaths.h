@@ -1,7 +1,7 @@
 #ifndef FORWARDPATHS_H
 #define FORWARDPATHS_H
 #include "../models/path.h"
-#include "DFS.h"
+#include "../algorithms/DFS.h"
 #include <vector>
 #include <iostream>
 #include <string>

@@ -29,6 +29,10 @@ class Graph {
 	   map<string, pair<path, double>> getLoops();
 
 	   map <string, vector<pair<string, double>>> getGraph();
+
+	   void CalculateNonTouched();
+
+	   vector<vector<pair<string, double>>> getNonTouched();
 	   
 
 

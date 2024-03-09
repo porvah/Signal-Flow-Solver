@@ -36,3 +36,13 @@ map<string, vector<pair<string, double>>> Graph::getGraph()
 {
 	return graph;
 }
+
+void Graph::CalculateNonTouched()
+{
+	loops.CalculateNonTouching(graph.size());
+}
+
+vector<vector<pair<string, double>>> Graph::getNonTouched()
+{
+	return loops.getNonTouching();
+}
