@@ -13,7 +13,7 @@ class RoutheEngine (object):
         array = self.coefficients_array[:]
         if(not self.check_same_sign_coefficients(array)):
             return False
-        table = self.get_routhe_table()
+        table = self.get_routhe_table(array)
         return self.get_number_of_sign_changes(table) == 0
     
     def simplify_coeffecient(self):
@@ -34,11 +34,19 @@ class RoutheEngine (object):
             arr.pop()
         return all(x > 0 for x in arr) or all(x < 0 for x in arr)
     
-    def get_routhe_table(self):
+    def get_routhe_table(self, coefficients_array, reversed = False):
         table = []
-        table.append(self.get_first_row())
-        table.append(self.get_second_row())
+        table.append(self.get_first_row(coefficients_array))
+        table.append(self.get_second_row(coefficients_array))
         for i in range(2, self.degree + 1):
+            if table[i - 1][0] == 0:
+                if not reversed:
+                    print("computing reverse")
+                    return self.get_routhe_table(coefficients_array[::-1], True)
+                else:
+                    raise ValueError("Cannot compute the routhe table")
+            
+                
             table.append(self.get_next_row(table, i))
         return table
         
