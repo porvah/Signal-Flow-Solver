@@ -10,7 +10,8 @@ class RoutheEngine (object):
             raise ValueError("Degree of the polynomial should be greater than or equal to 0")
 
     def check_stability(self):
-        if(not self.check_same_sign_coefficients(self.coefficients_array)):
+        array = self.coefficients_array[:]
+        if(not self.check_same_sign_coefficients(array)):
             return False
         table = self.get_routhe_table()
         return self.get_number_of_sign_changes(table) == 0
@@ -51,11 +52,11 @@ class RoutheEngine (object):
         next_row.append(0)
         return next_row
     
-    def get_first_row(self):
-        return [ele for i, ele in enumerate(self.coefficients_array) if i % 2 == 0] + [0]
+    def get_first_row(self, coefficients_array):
+        return [ele for i, ele in enumerate(coefficients_array) if i % 2 == 0] + [0]
     
-    def get_second_row(self):
-        return [ele for i, ele in enumerate(self.coefficients_array) if i % 2 != 0] + [0]
+    def get_second_row(self, coefficients_array):
+        return [ele for i, ele in enumerate(coefficients_array) if i % 2 != 0] + [0]
     
     def get_next_element(self, table, i, j):
         up_left, down_left = table[i-2][0], table[i-1][0]
