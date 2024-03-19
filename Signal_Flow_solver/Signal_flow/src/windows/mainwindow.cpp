@@ -5,9 +5,17 @@
 
 MainWindow::MainWindow()
 {
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout = new QVBoxLayout();
+    toolbarWidget = new ToolBarWidget();
 
-    setLayout(mainLayout);
+    mainLayout->addWidget(toolbarWidget);
+
+    QLabel *label = new QLabel("");
+    mainLayout->addWidget(label);
+
+    QWidget *centralWidget = new QWidget();
+    centralWidget->setLayout(mainLayout);
+    setCentralWidget(centralWidget);
 }
 
 MainWindow::~MainWindow()

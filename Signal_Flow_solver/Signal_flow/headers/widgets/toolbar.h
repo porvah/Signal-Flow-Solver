@@ -1,7 +1,10 @@
+#ifndef TOOLBARWIDGET_H
+#define TOOLBARWIDGET_H
+
 #include <QWidget>
 #include <QToolBar>
 #include <QPushButton>
-#include <string>
+#include <QLabel>
 
 class ToolBarWidget : public QToolBar
 {
@@ -13,9 +16,12 @@ public:
     std::string getChosenButton();
 
 private:
-    std::string chosenButton;
+    QString chosenButton;
     QPushButton* chooseNode;
     QPushButton* choosePath;
     QPushButton* clear;
     QPushButton* simulate;
+    QLabel* chosenLabel;
 };
+
+#endif
