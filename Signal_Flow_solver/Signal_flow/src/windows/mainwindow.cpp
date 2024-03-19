@@ -6,12 +6,12 @@
 MainWindow::MainWindow()
 {
     mainLayout = new QVBoxLayout();
-    toolbarWidget = new ToolBarWidget();
+    outputWidget = new OutputWidget();
+    toolbarWidget = new ToolBarWidget(nullptr, outputWidget);
 
     mainLayout->addWidget(toolbarWidget);
 
-    QLabel *label = new QLabel("");
-    mainLayout->addWidget(label);
+    mainLayout->addWidget(outputWidget, 0, Qt::AlignRight);
 
     QWidget *centralWidget = new QWidget();
     centralWidget->setLayout(mainLayout);
