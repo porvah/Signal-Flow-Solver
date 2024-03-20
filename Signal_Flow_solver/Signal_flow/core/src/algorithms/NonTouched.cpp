@@ -39,7 +39,7 @@ void NonTouched::FindNontouched(map<string, pair<path, double>>& loopsID, vector
         
     
 }
-/*check if the to loops is touched*/
+/*check if the loops are touched*/
 bool NonTouched::isTouched(vector<string> firstLoop, vector<string> secondLoop)
 {
     for (int i = 0; i < firstLoop.size(); i++) {
