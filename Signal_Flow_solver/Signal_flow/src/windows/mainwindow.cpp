@@ -9,22 +9,17 @@
 
 MainWindow::MainWindow(QWidget *parent)
 {
-//    QVBoxLayout *mainLayout = new QVBoxLayout;
-    //makeToolbar();
-    ToolBarWidget *toolbar = new ToolBarWidget();
+    mainLayout = new QVBoxLayout();
+    outputWidget = new OutputWidget();
+    toolbarWidget = new ToolBarWidget(nullptr, outputWidget);
 
-    //addToolBar(toolbar);
-//    ToolBarWidget *toolbar = new ToolBarWidget;
-//    WorkspaceWidget *workspace = new WorkspaceWidget;
-//    mainLayout->addWidget(toolbar);
-//    mainLayout->addWidget(workspace);
+    mainLayout->addWidget(toolbarWidget);
 
-//    setLayout(mainLayout);
-}
+    mainLayout->addWidget(outputWidget, 0, Qt::AlignRight);
 
-void MainWindow::makeToolbar(){
-
-
+    QWidget *centralWidget = new QWidget();
+    centralWidget->setLayout(mainLayout);
+    setCentralWidget(centralWidget);
 
 }
 

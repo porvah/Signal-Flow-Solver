@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QBoxLayout>
+#include <QLabel>
+#include "../../headers/widgets/toolbar.h"
+#include "../../headers/widgets/output.h"
 
 class MainWindow : public QMainWindow
 {
@@ -12,7 +15,9 @@ public:
     MainWindow(QWidget *parent);
     ~MainWindow();
 
-private:
-    void makeToolbar();
+private:   
+    QVBoxLayout *mainLayout;
+    ToolBarWidget* toolbarWidget;
+    OutputWidget* outputWidget;
 };
 #endif // MAINWINDOW_H

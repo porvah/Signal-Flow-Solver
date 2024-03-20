@@ -1,14 +1,25 @@
-#ifndef OUTPUT_H
-#define OUTPUT_H
+#ifndef OUTPUTWIDGET_H
+#define OUTPUTWIDGET_H
 
 #include <QWidget>
+#include <QTextEdit>
+#include <QVBoxLayout>
 
-class OutputWidget : public QWidget
+class OutputWidget: public QWidget
 {
     Q_OBJECT
+
 public:
-    OutputWidget();
-    ~OutputWidget();
+    explicit OutputWidget(QWidget* parent = nullptr);
+
+public slots:
+    void updateText(std::map<std::string, std::vector<std::pair<std::string, double>>> mp);
+
+private:
+    QTextEdit* outputTextEdit;
+
+private:
+    QString convertGraphToString(std::map<std::string, std::vector<std::pair<std::string, double>>> mp);
 };
 
 #endif
