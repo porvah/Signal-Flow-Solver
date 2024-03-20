@@ -6,6 +6,7 @@
 #include <QLabel>
 #include "../../headers/widgets/toolbar.h"
 #include "../../headers/widgets/output.h"
+#include "../../headers/widgets/canvas.h"
 
 class MainWindow : public QMainWindow
 {
@@ -17,7 +18,11 @@ public:
 
 private:   
     QVBoxLayout *mainLayout;
+    QHBoxLayout *workspaceLayout;
     ToolBarWidget* toolbarWidget;
     OutputWidget* outputWidget;
+    QWidget* workspace;
+    CanvasWidget* canvas;
+    void prepareChildren();
 };
 #endif // MAINWINDOW_H
