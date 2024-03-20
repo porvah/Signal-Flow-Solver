@@ -1,9 +1,13 @@
 #include "../../headers/windows/mainwindow.h"
+#include "../../headers/widgets/toolbar.h"
+#include "../../headers/widgets/workspace.h"
+
 #include <QWidget>
 #include <QLayout>
+#include <QToolBar>
 
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(QWidget *parent)
 {
     mainLayout = new QVBoxLayout();
     outputWidget = new OutputWidget();
@@ -16,9 +20,11 @@ MainWindow::MainWindow()
     QWidget *centralWidget = new QWidget();
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
+
 }
 
 MainWindow::~MainWindow()
 {
 }
+
 

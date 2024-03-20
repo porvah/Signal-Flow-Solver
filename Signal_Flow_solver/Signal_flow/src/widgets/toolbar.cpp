@@ -72,4 +72,5 @@ ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget)
 std::string ToolBarWidget::getChosenButton()
 {
     return chosenButton.toStdString();
+
 }
