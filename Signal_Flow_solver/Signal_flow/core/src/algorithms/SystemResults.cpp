@@ -1,5 +1,5 @@
 #include "../../headers/algorithms/SystemResults.h"
-
+/* calculate the values of all deltas*/
 void SystemResults::CalculateDeltas(vector<pair<path, double>> paths, map<string, pair<path, double>> loops)
 {
 	double d = 1;
@@ -13,12 +13,12 @@ void SystemResults::CalculateDeltas(vector<pair<path, double>> paths, map<string
 	}
 
 }
-
+/*return the values of deltas*/
 vector<pair<string, double>> SystemResults::getDeltas()
 {
 	return Deltas;
 }
-
+/* calculate delta*/
 void SystemResults::CalculateDelta(map<string, pair<path, double>> individulLoops,vector<vector<pair<string, double>>> loops)
 {
 	delta = 1;
@@ -35,12 +35,12 @@ void SystemResults::CalculateDelta(map<string, pair<path, double>> individulLoop
 	}
 
 }
-
+/* return the value of delta */
 double SystemResults::getDelta()
 {
 	return delta;
 }
-
+/* calculate the system transfer function value */
 double SystemResults::CalculateTransferFunction(vector<pair<path, double>> paths)
 {
 	double c=0;
@@ -50,7 +50,7 @@ double SystemResults::CalculateTransferFunction(vector<pair<path, double>> paths
 	SystemTransferFunction = c / delta;
 	return SystemTransferFunction;
 }
-
+/*check whether the path and a loop are touched*/
 bool SystemResults::isTouched(vector<string> Path, vector<string> loop)
 {
 	for (int i = 0; i < Path.size(); i++) {

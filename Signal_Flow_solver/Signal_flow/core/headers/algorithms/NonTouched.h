@@ -12,6 +12,7 @@ class NonTouched {
 public:
     void FindNontouched(map<string, pair<path, double>>& loopsID, vector<vector<pair<string, double>>>& nontouched, int nodesNum);
 
+private:
     bool isTouched(vector<string> firstLoop, vector<string> secondLoop);
 
     bool IsExisted(string loopName, vector<tuple<string, path, double>> combinations);

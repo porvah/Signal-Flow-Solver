@@ -9,7 +9,7 @@ class DFS {
 
    public:
        void dfs(const string& start, const string& end, path& p, unordered_set<string>& visited, vector<pair<path, double>>& paths, map <string, vector<pair<string, double>>>& graph,bool indicator);
-
+   private:
        bool Found(vector<string> nodes,vector <pair<path, double>> loops);
 };
 #endif // !DFS_H

@@ -116,6 +116,6 @@ int main() {
 	cout << g.getDelta() << endl;
 	cout << "Transfer Function ="<< g.getSystemTransferFunction();
 	return 0;
-
-	// test comment delete me if you find me
+	//commment
+	
 }

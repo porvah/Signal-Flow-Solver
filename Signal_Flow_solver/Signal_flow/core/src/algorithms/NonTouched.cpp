@@ -1,17 +1,17 @@
 #include "../../headers/algorithms/NonTouched.h"
 
 
-
+/*logic to calculate all non touched loops*/
 void NonTouched::FindNontouched(map<string, pair<path, double>>& loopsID, vector<vector<pair<string, double>>>& nontouched,int nodesNum)
 {
         vector<tuple<string, path, double>> v;
-        vector<vector<tuple<string, path, double>>> combinations;
+        vector<vector<tuple<string, path, double>>> combinations; // stores all combinations of non touched loops
         for (auto const& x : loopsID)
             v.push_back(make_tuple(x.first, loopsID[x.first].first, loopsID[x.first].second));
 
         combinations.push_back(v);
-        vector<pair<string, double>> temp;
-        vector<tuple<string, path, double>> temp1;
+        vector<pair<string, double>> temp; // to stroe the nodes 
+        vector<tuple<string, path, double>> temp1; // to store the path without nodes
         int index = 0;
         for (int k = 2; k <= nodesNum; k++) {
             for (int i = 0; i < v.size(); i++) {
@@ -39,7 +39,7 @@ void NonTouched::FindNontouched(map<string, pair<path, double>>& loopsID, vector
         
     
 }
-
+/*check if the to loops is touched*/
 bool NonTouched::isTouched(vector<string> firstLoop, vector<string> secondLoop)
 {
     for (int i = 0; i < firstLoop.size(); i++) {
@@ -48,13 +48,13 @@ bool NonTouched::isTouched(vector<string> firstLoop, vector<string> secondLoop)
     }
     return false;
 }
-
+/* check for the existance of the loops to avoid duplication*/
 bool NonTouched::IsExisted(string loopName, vector<tuple<string, path, double>> combinations)
 {  
     int count = 0;
     for (int j = 0; j < combinations.size(); j++) {
         for (int i = 0; i < loopName.length(); i+=2) {
-            string s = loopName.substr(i, 2);
+            string s = loopName.substr(i, 2); // get the name of the loop
             if (get<0>(combinations[j]).find(s) != string::npos) {
                 count++;
             }

@@ -1,12 +1,12 @@
 #include "../../headers/algorithms/DFS.h"
 
-
+/*graph traversal*/
 void DFS::dfs(const string& start, const string& end, path& p, unordered_set<string>& visited, vector<pair<path, double>>& paths, map<string, vector<pair<string, double>>>& graph,bool indicator)
 {
-		visited.insert(start);
+		visited.insert(start); // mark the node as visited
 		p.addNode(start);
 
-		if(indicator){
+		if(indicator){ // forward paths calculation
 		if (start == end && visited.size() > 0 ) {
 			p.ClaculateGain();
 			paths.push_back(make_pair(p, p.getGain()));
@@ -21,7 +21,7 @@ void DFS::dfs(const string& start, const string& end, path& p, unordered_set<str
 			}
 		}
 	}
-		else if (!indicator) {
+		else if (!indicator) {// loops calculation
 			for (int i = 0; i < graph[start].size(); i++) {
 				if (graph[start][i].first == end && visited.size() > 0) {
 					p.addGain(graph[start][i].second);
@@ -48,6 +48,7 @@ void DFS::dfs(const string& start, const string& end, path& p, unordered_set<str
 		visited.erase(start);
 
 }
+/*check for the existance of the loop to avoid duplication*/
 bool DFS::Found(vector<string> nodes, vector<pair<path, double>> loops)
 {
 	int count = 0;

@@ -14,6 +14,8 @@ private:
     double delta;
 
     double SystemTransferFunction;
+
+    bool isTouched(vector<string> Path, vector<string> loop);
 public:
     void CalculateDeltas(vector<pair<path, double>> paths, map<string, pair<path, double>> loops);
 
@@ -24,8 +26,6 @@ public:
     double getDelta();
 
     double CalculateTransferFunction(vector<pair<path, double>> paths);
-
-    bool isTouched(vector<string> Path, vector<string> loop);
 
 };
 #endif // !SYSTEMRESULTS_H

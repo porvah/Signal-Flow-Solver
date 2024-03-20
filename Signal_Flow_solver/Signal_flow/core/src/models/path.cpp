@@ -2,7 +2,7 @@
 
 path::path()
 {
-	gain = 1;
+	gain = 1; // set the gain of the first node to one
 	gains.push_back(1);
 }
 
@@ -36,7 +36,7 @@ void path::addGain(double nodeGain)
 {
 	gains.push_back(nodeGain);
 }
-
+/*calculate the total gain of the path*/
 void path::ClaculateGain()
 {
 	gain = 1;
