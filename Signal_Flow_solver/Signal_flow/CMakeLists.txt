@@ -31,6 +31,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         images/new-moon.png images/play.png images/right-arrow.png images/trash-can.png
+        headers/widgets/validation_dialog.h
+        src/widgets/validation_dialog.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Signal_flow APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

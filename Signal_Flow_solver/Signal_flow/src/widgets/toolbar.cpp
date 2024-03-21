@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget)
-    : QToolBar(parent), outputWidgetRef(outputWidget)
+ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget, ValidationDialog* validationWidget)
+    : QToolBar(parent), outputWidgetRef(outputWidget), validationDialog(validationWidget)
 {
     setStyleSheet("background-color: #5d8aa8;");
 
@@ -36,6 +36,9 @@ ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget)
     connect(chooseNode, &QPushButton::clicked, [=]() {
         chosenButton = "NODE_PRESSED";
         chosenLabel->setText(chosenButton);
+
+        validationWidget->setLabelText("Graph is not valid");
+        validationWidget->exec();
     });
 
     connect(choosePath, &QPushButton::clicked, [=]() {

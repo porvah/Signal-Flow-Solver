@@ -16,7 +16,8 @@ void MainWindow::prepareChildren(){
     mainLayout = new QVBoxLayout();
     workspaceLayout = new QHBoxLayout();
     outputWidget = new OutputWidget();
-    toolbarWidget = new ToolBarWidget(nullptr, outputWidget);
+    validationDialog = new ValidationDialog();
+    toolbarWidget = new ToolBarWidget(nullptr, outputWidget, validationDialog);
     workspace = new QWidget();
     canvas = new CanvasWidget();
     mainLayout->addWidget(toolbarWidget);

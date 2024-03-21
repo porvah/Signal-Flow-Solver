@@ -7,6 +7,7 @@
 #include "../../headers/widgets/toolbar.h"
 #include "../../headers/widgets/output.h"
 #include "../../headers/widgets/canvas.h"
+#include "../../headers/widgets/validation_dialog.h"
 
 class MainWindow : public QMainWindow
 {
@@ -21,6 +22,7 @@ private:
     QHBoxLayout *workspaceLayout;
     ToolBarWidget* toolbarWidget;
     OutputWidget* outputWidget;
+    ValidationDialog* validationDialog;
     QWidget* workspace;
     CanvasWidget* canvas;
     void prepareChildren();
