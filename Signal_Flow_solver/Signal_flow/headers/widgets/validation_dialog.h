@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 
 class ValidationDialog : public QDialog
 {

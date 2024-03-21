@@ -3,7 +3,9 @@
 ValidationDialog::ValidationDialog(QWidget* parent)
     : QDialog(parent)
 {
+    // The title of the window
     setWindowTitle("Validation Dialog");
+    // Styling the dialog
     setStyleSheet(
         "QDialog {"
         "   background-color: #cacaca;"
@@ -17,13 +19,20 @@ ValidationDialog::ValidationDialog(QWidget* parent)
         "}"
     );
 
+    // The main layout of the dialog
     QVBoxLayout* layout = new QVBoxLayout(this);
     label = new QLabel("", this);
     label->setAlignment(Qt::AlignCenter);
     layout->addWidget(label);
 
+    // Ok Button
+    QPushButton* okButton = new QPushButton("OK", this);
+    layout->addWidget(okButton);
+    connect(okButton, &QPushButton::clicked, this, &ValidationDialog::accept);
+
     setLayout(layout);
 
+    // Constraints of the window size
     setMinimumWidth(200);
     setMaximumWidth(250);
 
