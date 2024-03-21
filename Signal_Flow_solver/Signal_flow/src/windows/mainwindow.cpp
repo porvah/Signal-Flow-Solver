@@ -18,11 +18,11 @@ void MainWindow::prepareChildren(){
     outputWidget = new OutputWidget();
     toolbarWidget = new ToolBarWidget(nullptr, outputWidget);
     workspace = new QWidget();
-    canvas = new CanvasWidget();
+    canvas = new CanvasWidget(nullptr);
     mainLayout->addWidget(toolbarWidget);
     mainLayout->addWidget(workspace);
     workspaceLayout->addWidget(canvas);
-    workspaceLayout->addWidget(outputWidget, 0, Qt::AlignRight);
+    workspaceLayout->addWidget(outputWidget);
     workspace->setLayout(workspaceLayout);
     QWidget *centralWidget = new QWidget();
     centralWidget->setLayout(mainLayout);
