@@ -28,5 +28,6 @@ private:
     QWidget* workspace;
     CanvasWidget* canvas;
     void prepareChildren();
+    void connectSignals();
 };
 #endif // MAINWINDOW_H

@@ -7,11 +7,19 @@
 #include <iostream>
 #include <QtMath>
 #include <QtCore/qmath.h>
+#include <QApplication>
+#include <QScreen>
 CanvasWidget::CanvasWidget(QWidget *parent)
     : QWidget(parent)
 {
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+    setFixedWidth(width-250);
+    setFixedHeight(height-100);
+    this->gainInputDialog = new GainInputDialog();
     this->clearandsetup();
-
 }
 int CanvasWidget::num = 0;
 CanvasWidget::~CanvasWidget()
@@ -31,17 +39,14 @@ void CanvasWidget::paintEvent(QPaintEvent *)
     pen.setWidth(3);
     painter.setPen(pen);
     painter.setFont(font);
-    pair<QPoint,QPoint> temp;
-    temp.second = QPoint(300,700);
-    temp.first = QPoint(500,700);
-    this->drawArrow(10, temp, &painter);
+    for(int i = 0; i < arrows.size(); i++){
+        this->drawArrow(arrows[i].first, arrows[i].second, &painter);
+    }
     for(int i = 0; i < nodes.size(); i++){
         this->drawNode(nodes[i].second, nodes[i].first, &painter);
     }
     painter.restore();
-    for(int i = 0; i < arrows.size(); i++){
-        this->drawArrow(arrows[i].first, arrows[i].second, &painter);
-    }
+
 }
 
 void CanvasWidget::mousePressEvent(QMouseEvent *event)
@@ -54,6 +59,9 @@ void CanvasWidget::mousePressEvent(QMouseEvent *event)
         node1Name = this->searchForNode(this->mapFromGlobal(QCursor::pos()));
         if(node1Name != "none"){
             animationStartPos = this->getNodePos(node1Name);
+            animationStarted = true;
+        }else{
+            animationStarted = false;
         }
         // test here <----------------------------------------------------------------------------------------------------
     }
@@ -68,11 +76,13 @@ void CanvasWidget::mouseReleaseEvent(QMouseEvent *event)
                 node2Name = nodeName;
                 QPoint pos1 = this->getNodePos(node1Name);
                 QPoint pos2 = this->getNodePos(node2Name);
-                // get gain from dialog <--------------------------------------------------------------------------------
-                double gain = 101;
+                gainInputDialog->clearField();
+                gainInputDialog->exec();
+                double gain = gainInputDialog->getGain();
                 this->addArrow(gain, node1Name, node2Name, pair(pos1, pos2));
             }
         }
+        animationStarted = false;
     }
     mouseDownState = false;
     node1Name = "none";
@@ -82,10 +92,12 @@ void CanvasWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void CanvasWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    update();
-    if(event->type()==QMouseEvent::MouseMove && state == Arrow && mouseDownState == true){
-        this->drawArrow(0, pair(animationStartPos, this->mapFromGlobal(QCursor::pos())), painterptr);
-        // test here <----------------------------------------------------------------------------------------------------
+    if(event->type()==QMouseEvent::MouseMove && state == Arrow && mouseDownState == true && animationStarted){
+        QPoint currentPos = this->mapFromGlobal(QCursor::pos());
+        QPainter painter(this);
+        //this->drawArrow(0, pair(animationStartPos, currentPos), &painter);
+        update();
+//        // test here <----------------------------------------------------------------------------------------------------
     }
 
 }
@@ -115,6 +127,29 @@ QPoint CanvasWidget::getNodePos(string name)
         if(nodes[i].first == name) return nodes[i].second;
     }
     return dummy;
+}
+
+void CanvasWidget::onNodeSelected()
+{
+    this->state = Node;
+}
+
+void CanvasWidget::onPathSelected()
+{
+    this->state = Arrow;
+}
+
+void CanvasWidget::onClearPressed()
+{
+    this->nodes.clear();
+    this->arrows.clear();
+    this->inputGraph.clear();
+    this->clearandsetup();
+}
+
+void CanvasWidget::onStartSim()
+{
+
 }
 
 void CanvasWidget::drawNode(QPoint position, string name, QPainter *painter)
@@ -152,10 +187,10 @@ void CanvasWidget::clearandsetup()
     qInfo("constructed");
     QPoint startPos;
     startPos.setX(50);
-    startPos.setY(height());
+    startPos.setY(height()/2);
     QPoint endPos;
-    endPos.setX(2.5*width()-50);
-    endPos.setY(height());
+    endPos.setX(width()-50);
+    endPos.setY(height()/2);
     this->addNode(startPos, "start");
     this->addNode(endPos, "end");
     update();

@@ -36,28 +36,27 @@ ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget, Valida
     connect(chooseNode, &QPushButton::clicked, [=]() {
         chosenButton = "NODE_PRESSED";
         chosenLabel->setText(chosenButton);
-
-        validationWidget->setLabelText("Graph is not valid");
-        validationWidget->exec();
+        emit selectNode();
+//        validationWidget->setLabelText("Graph is not valid");
+//        validationWidget->exec();
     });
 
     connect(choosePath, &QPushButton::clicked, [=]() {
         chosenButton = "PATH_PRESSED";
         chosenLabel->setText(chosenButton);
-
-        gainInputDialog->clearField();
-        gainInputDialog->exec();
+        emit selectPath();
     });
 
     connect(clear, &QPushButton::clicked, [=]() {
         chosenButton = "CLEAR_PRESSED";
         chosenLabel->setText(chosenButton);
+        emit pressClear();
     });
 
     connect(simulate, &QPushButton::clicked, [=]() {
         chosenButton = "SIMULATION_PRESSED";
         chosenLabel->setText(chosenButton);
-
+        emit startSim();
         std::map<std::string, std::vector<std::pair<std::string, double>>> mp;
         mp["start"].push_back({"y2", 1});
         mp["y2"].push_back({"y3", 5});

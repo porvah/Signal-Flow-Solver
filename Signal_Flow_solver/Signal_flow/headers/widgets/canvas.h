@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <QPair>
+#include "./gain_input_dialog.h"
 using namespace std;
 
 enum Selected {None, Node, Arrow};
@@ -18,6 +19,7 @@ public:
     ~CanvasWidget();
 
 
+
 protected:
     void paintEvent(QPaintEvent*);
 
@@ -27,23 +29,29 @@ private:
     string node1Name;
     string node2Name;
     QPoint animationStartPos;
+    bool animationStarted;
     map<string, vector<pair<string, double>>> inputGraph;
     vector<pair<string, QPoint>> nodes;
     vector<pair<double, pair<QPoint,QPoint>>> arrows;
     QPainter*painterptr;
     static int num;
     int nodeId;
+    GainInputDialog* gainInputDialog;
+    void clearandsetup();
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void drawNode(QPoint position, string name, QPainter *painter);
     void addNode(QPoint pos, string name);
-    void clearandsetup();
     void drawArrow(double gain, pair<QPoint,QPoint> arrow, QPainter *painter);
     void addArrow(double gain, string node1, string node2, pair<QPoint, QPoint> fromTo);
     string searchForNode(QPoint pos);
     QPoint getNodePos(string name);
-
+public slots:
+    void onNodeSelected();
+    void onPathSelected();
+    void onClearPressed();
+    void onStartSim();
 };
 
 #endif

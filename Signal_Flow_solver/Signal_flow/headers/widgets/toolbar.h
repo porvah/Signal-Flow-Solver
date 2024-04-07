@@ -28,6 +28,11 @@ private:
     OutputWidget* outputWidgetRef;
     ValidationDialog* validationDialog;
     GainInputDialog* gainInputDialog;
+signals:
+    void selectNode();
+    void selectPath();
+    void pressClear();
+    void startSim();
 };
 
 #endif
