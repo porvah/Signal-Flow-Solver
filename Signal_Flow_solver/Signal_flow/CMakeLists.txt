@@ -14,15 +14,41 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        src/windows/mainwindow.cpp
+        headers/windows/mainwindow.h
+	src/widgets/toolbar.cpp
+        src/widgets/canvas.cpp
+	src/widgets/output.cpp
+	src/widgets/workspace.cpp
+	core/src/algorithms/DFS.cpp
+	core/src/algorithms/NonTouched.cpp
+	core/src/algorithms/SystemResults.cpp
+	core/src/logic/ForwardPaths.cpp
+	core/src/logic/Loops.cpp
+	core/src/models/Graph.cpp
+	core/src/models/path.cpp
+	core/headers/algorithms/DFS.h
+	core/headers/algorithms/NonTouched.h
+	core/headers/algorithms/SystemResults.h
+	core/headers/logic/ForwardPaths.h
+	core/headers/logic/Loops.h
+	core/headers/models/Graph.h
+	core/headers/models/path.h
+	headers/widgets/toolbar.h
+        headers/widgets/canvas.h
+	headers/widgets/output.h
+	headers/widgets/workspace.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Signal_flow
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        images/new-moon.png images/play.png images/right-arrow.png images/trash-can.png
+        headers/widgets/validation_dialog.h
+        src/widgets/validation_dialog.cpp
+        headers/widgets/gain_input_dialog.h
+        src/widgets/gain_input_dilaog.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Signal_flow APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
