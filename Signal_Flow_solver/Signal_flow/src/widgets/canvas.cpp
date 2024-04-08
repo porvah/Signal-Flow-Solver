@@ -80,7 +80,9 @@ void CanvasWidget::mouseReleaseEvent(QMouseEvent *event)
                 QPoint pos1 = this->getNodePos(node1Name);
                 QPoint pos2 = this->getNodePos(node2Name);
                 gainInputDialog->clearField();
-                gainInputDialog->exec();
+                int status = gainInputDialog->exec();
+                if (status == 0)
+                    return;
                 double gain = gainInputDialog->getGain();
                 this->addArrow(gain, node1Name, node2Name, pair(pos1, pos2));
             }

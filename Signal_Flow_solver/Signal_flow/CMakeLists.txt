@@ -19,7 +19,7 @@ set(PROJECT_SOURCES
 	src/widgets/toolbar.cpp
         src/widgets/canvas.cpp
 	src/widgets/output.cpp
-	src/widgets/workspace.cpp
+
 	core/src/algorithms/DFS.cpp
 	core/src/algorithms/NonTouched.cpp
 	core/src/algorithms/SystemResults.cpp
@@ -37,7 +37,7 @@ set(PROJECT_SOURCES
 	headers/widgets/toolbar.h
         headers/widgets/canvas.h
 	headers/widgets/output.h
-	headers/widgets/workspace.h
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
