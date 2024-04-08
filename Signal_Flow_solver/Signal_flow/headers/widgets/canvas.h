@@ -7,6 +7,9 @@
 #include <string>
 #include <QPair>
 #include "./gain_input_dialog.h"
+#include "./validation_dialog.h"
+#include "../../core/headers/models/Graph.h"
+
 using namespace std;
 
 enum Selected {None, Node, Arrow};
@@ -37,6 +40,7 @@ private:
     static int num;
     int nodeId;
     GainInputDialog* gainInputDialog;
+    ValidationDialog* validationDialog;
     void clearandsetup();
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
@@ -47,11 +51,18 @@ private:
     void addArrow(double gain, string node1, string node2, pair<QPoint, QPoint> fromTo);
     string searchForNode(QPoint pos);
     QPoint getNodePos(string name);
+    bool firstValidation();
+    bool seconValidation(Graph core);
 public slots:
     void onNodeSelected();
     void onPathSelected();
     void onClearPressed();
     void onStartSim();
+signals:
+    void sendOutputs(vector<pair<path, double>> paths, map<string, pair<path, double>> loops,
+        vector<vector<pair<string, double>>> nonTouched, vector<pair<string, double>> deltas,
+        double delta, double tf);
+
 };
 
 #endif

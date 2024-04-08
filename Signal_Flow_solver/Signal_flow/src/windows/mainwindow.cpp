@@ -44,6 +44,7 @@ void MainWindow::connectSignals()
     connect(this->toolbarWidget, &ToolBarWidget::selectPath, this->canvas, &CanvasWidget::onPathSelected);
     connect(this->toolbarWidget, &ToolBarWidget::pressClear, this->canvas, &CanvasWidget::onClearPressed);
     connect(this->toolbarWidget, &ToolBarWidget::startSim, this->canvas, &CanvasWidget::onStartSim);
+    connect(this->canvas, &CanvasWidget::sendOutputs, this->outputWidget, &OutputWidget::updateText);
 }
 
 MainWindow::~MainWindow()

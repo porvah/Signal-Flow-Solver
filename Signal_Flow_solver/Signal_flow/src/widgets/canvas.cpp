@@ -9,6 +9,8 @@
 #include <QtCore/qmath.h>
 #include <QApplication>
 #include <QScreen>
+#include "../../core/headers/models/Graph.h"
+
 CanvasWidget::CanvasWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -19,6 +21,7 @@ CanvasWidget::CanvasWidget(QWidget *parent)
     setFixedWidth(width-250);
     setFixedHeight(height-100);
     this->gainInputDialog = new GainInputDialog();
+    this->validationDialog = new ValidationDialog();
     this->clearandsetup();
 }
 int CanvasWidget::num = 0;
@@ -129,6 +132,23 @@ QPoint CanvasWidget::getNodePos(string name)
     return dummy;
 }
 
+bool CanvasWidget::firstValidation()
+{
+    for (auto const& x : inputGraph){
+        if(x.first != "end"){
+            if(x.second.size() == 0) return false;
+        }
+    }
+    return true;
+}
+
+bool CanvasWidget::seconValidation(Graph core)
+{
+    vector<pair<path, double>> paths = core.getPaths();
+    if(paths.size() == 0) return false;
+    else return true;
+}
+
 void CanvasWidget::onNodeSelected()
 {
     this->state = Node;
@@ -149,7 +169,29 @@ void CanvasWidget::onClearPressed()
 
 void CanvasWidget::onStartSim()
 {
-
+    bool showDialog = false;
+    if(this->firstValidation()){
+        Graph core(inputGraph);
+        core.CalculatePaths();
+        if(this->seconValidation(core)){
+            vector<pair<path, double>> paths = core.getPaths();
+            core.CalculateLoops();
+            map<string, pair<path, double>> loops = core.getLoops();
+            core.CalculateNonTouched();
+            vector<vector<pair<string, double>>> nonTouched = core.getNonTouched();
+            core.CalculateDeltas();
+            vector<pair<string, double>> deltas = core.getDeltas();
+            core.CalculateDelta();
+            double delta = core.getDelta();
+            double tf = core.getSystemTransferFunction();
+            emit sendOutputs(paths, loops, nonTouched, deltas, delta, tf);
+        }else showDialog = true;
+    }
+    else showDialog = true;
+    if(showDialog){
+        this->validationDialog->setLabelText("Graph is Not valid");
+        this->validationDialog->exec();
+    }
 }
 
 void CanvasWidget::drawNode(QPoint position, string name, QPainter *painter)
@@ -182,7 +224,7 @@ void CanvasWidget::clearandsetup()
 {
     node1Name = "none";
     node2Name = "none";
-    nodeId = 1;
+
     state = None;
     qInfo("constructed");
     QPoint startPos;
@@ -193,6 +235,7 @@ void CanvasWidget::clearandsetup()
     endPos.setY(height()/2);
     this->addNode(startPos, "start");
     this->addNode(endPos, "end");
+    nodeId = 1;
     update();
 }
 

@@ -1,5 +1,5 @@
 #include "../../headers/algorithms/NonTouched.h"
-
+#include <algorithm>
 
 /*logic to calculate all non touched loops*/
 void NonTouched::FindNontouched(map<string, pair<path, double>>& loopsID, vector<vector<pair<string, double>>>& nontouched,int nodesNum)

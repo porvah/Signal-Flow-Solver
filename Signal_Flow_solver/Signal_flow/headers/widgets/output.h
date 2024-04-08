@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include "../../core/headers/models/path.h"
+
+using namespace std;
 
 class OutputWidget: public QWidget
 {
@@ -13,13 +16,17 @@ public:
     explicit OutputWidget(QWidget* parent = nullptr);
 
 public slots:
-    void updateText(std::map<std::string, std::vector<std::pair<std::string, double>>> mp);
+    void updateText(vector<pair<path, double>> paths, map<string, pair<path, double>> loops,
+                    vector<vector<pair<string, double>>> nonTouched, vector<pair<string, double>> deltas,
+                    double delta, double tf);
 
 private:
     QTextEdit* outputTextEdit;
 
 private:
-    QString convertGraphToString(std::map<std::string, std::vector<std::pair<std::string, double>>> mp);
+    QString convertGraphToString(vector<pair<path, double>> paths, map<string, pair<path, double>> loops,
+                                 vector<vector<pair<string, double>>> nonTouched, vector<pair<string, double>> deltas,
+                                 double delta, double tf);
 };
 
 #endif

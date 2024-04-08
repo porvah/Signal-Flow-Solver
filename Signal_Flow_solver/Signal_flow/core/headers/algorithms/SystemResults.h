@@ -3,9 +3,10 @@
 #include <iostream>
 #include "../logic/ForwardPaths.h"
 #include "../logic/Loops.h"
-#include "vector"
-#include "map"
-#include "string"
+#include <vector>
+#include <map>
+#include <string>
+#include <algorithm>
 using namespace std;
 class SystemResults {
 private:

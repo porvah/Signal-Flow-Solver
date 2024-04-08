@@ -37,8 +37,6 @@ ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget, Valida
         chosenButton = "NODE_PRESSED";
         chosenLabel->setText(chosenButton);
         emit selectNode();
-//        validationWidget->setLabelText("Graph is not valid");
-//        validationWidget->exec();
     });
 
     connect(choosePath, &QPushButton::clicked, [=]() {
@@ -57,20 +55,7 @@ ToolBarWidget::ToolBarWidget(QWidget* parent, OutputWidget* outputWidget, Valida
         chosenButton = "SIMULATION_PRESSED";
         chosenLabel->setText(chosenButton);
         emit startSim();
-        std::map<std::string, std::vector<std::pair<std::string, double>>> mp;
-        mp["start"].push_back({"y2", 1});
-        mp["y2"].push_back({"y3", 5});
-        mp["y2"].push_back({"y6",10});
-        mp["y3"].push_back({"y4", 10});
-        mp["y4"].push_back({"y3", -1});
-        mp["y4"].push_back({"y5", 2});
-        mp["y5"].push_back({"y4", -2});
-        mp["y5"].push_back({"y2", -1});
-        mp["y5"].push_back({"end", 1});
-        mp["y6"].push_back({"y5", 2});
-        mp["y6"].push_back({"y6", -1});
 
-        outputWidget->updateText(mp);
     });
 }
 

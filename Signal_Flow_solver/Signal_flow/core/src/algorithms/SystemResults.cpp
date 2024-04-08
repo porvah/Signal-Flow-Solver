@@ -1,4 +1,5 @@
 #include "../../headers/algorithms/SystemResults.h"
+#include <algorithm>
 /* calculate the values of all deltas*/
 void SystemResults::CalculateDeltas(vector<pair<path, double>> paths, map<string, pair<path, double>> loops)
 {

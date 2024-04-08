@@ -20,6 +20,20 @@ set(PROJECT_SOURCES
         src/widgets/canvas.cpp
 	src/widgets/output.cpp
 	src/widgets/workspace.cpp
+	core/src/algorithms/DFS.cpp
+	core/src/algorithms/NonTouched.cpp
+	core/src/algorithms/SystemResults.cpp
+	core/src/logic/ForwardPaths.cpp
+	core/src/logic/Loops.cpp
+	core/src/models/Graph.cpp
+	core/src/models/path.cpp
+	core/headers/algorithms/DFS.h
+	core/headers/algorithms/NonTouched.h
+	core/headers/algorithms/SystemResults.h
+	core/headers/logic/ForwardPaths.h
+	core/headers/logic/Loops.h
+	core/headers/models/Graph.h
+	core/headers/models/path.h
 	headers/widgets/toolbar.h
         headers/widgets/canvas.h
 	headers/widgets/output.h

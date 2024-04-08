@@ -1,6 +1,10 @@
 #include "../../headers/models/Graph.h"
 
 
+Graph::Graph(map <string,vector<pair<string, double>>> map){
+    this->graph = map;
+}
+
 void Graph::addNode(string node)
 {
 	graph[node] = vector<pair<string, double>>();

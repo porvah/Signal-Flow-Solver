@@ -17,7 +17,7 @@ class Graph {
 	   SystemResults result;
    
    public:
-
+       Graph(map <string,vector<pair<string, double>>> map);
 	   void addNode(string node);
 
 	   void connect(string from, string to,double gain);

@@ -13,29 +13,59 @@ OutputWidget::OutputWidget(QWidget* parent)
 
     setLayout(layout);
 
-    setStyleSheet("background-color: lightgray;");
+    setStyleSheet("background-color: lightgray; font-size:14px");
 }
 
-void OutputWidget::updateText(std::map<std::string, std::vector<std::pair<std::string, double>>> mp)
+void OutputWidget::updateText(vector<pair<path, double>> paths, map<string, pair<path, double>> loops,
+                              vector<vector<pair<string, double>>> nonTouched, vector<pair<string, double>> deltas,
+                              double delta, double tf)
 {
-    QString graph = convertGraphToString(mp);
+    QString graph = convertGraphToString(paths, loops, nonTouched, deltas, delta, tf);
     outputTextEdit->setText(graph);
 }
 
-QString OutputWidget::convertGraphToString(std::map<std::string, std::vector<std::pair<std::string, double>>> mp)
+QString OutputWidget::convertGraphToString(vector<pair<path, double>> paths, map<string, pair<path, double>> loops,
+                                           vector<vector<pair<string, double>>> nonTouched, vector<pair<string, double>> deltas,
+                                           double delta, double tf)
 {
     QString text;
     text += "Graph: \n";
-    for (auto const& x : mp)
-    {
-        text += x.first + ": ";
-        for (int i = 0; i < mp[x.first].size(); i++) {
-            text += "(" + mp[x.first][i].first + ", ";
-            text += QString::number(mp[x.first][i].second, 'f', 2) + "),";
 
+    text += "Forward Paths:\n";
+    for (int i = 0; i < paths.size(); i++) {
+        for (int j = 0; j < paths[i].first.getNodes().size(); j++) {
+            text += paths[i].first.getNodes()[j] + ",";
         }
+        text += QString::number(paths[i].second) + "\n";
+    }
+    text += "Loops:\n";
+    for (auto const& x : loops)
+    {
+        text += x.first + ':';
+        for (int i = 0; i < loops [x.first].first.getNodes().size() ; i++) {
+            text += loops[x.first].first.getNodes()[i] + ",";
+        }
+        text += "gain =" + QString::number(loops[x.first].second);
         text += "\n";
     }
+    text += "Nontouched Loops:\n";
+    for (int i=0;i<nonTouched.size();i++)
+    {
+        for (int j = 0; j < nonTouched[i].size(); j++) {
+            text += nonTouched[i][j].first +':';
+            text += "gain =" + QString::number(nonTouched[i][j].second);
+            text += "\n";
+        }
+    }
+    text += "Deltas:\n";
+    for (int i = 0; i < deltas.size(); i++) {
+        text += deltas[i].first + "=";
+        text += QString::number(deltas[i].second) +"\n";
+    }
+    text += "Delta=";
+    text += QString::number(delta)+"\n";
+    text += "Transfer Function ="+ QString::number(tf);
+
 
     return text;
 }
