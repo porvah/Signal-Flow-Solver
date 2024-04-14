@@ -4,5 +4,4 @@
 #include "F2YV4FKCGW/moc_output.cpp"
 #include "F2YV4FKCGW/moc_toolbar.cpp"
 #include "F2YV4FKCGW/moc_validation_dialog.cpp"
-#include "F2YV4FKCGW/moc_workspace.cpp"
 #include "BORQOY2OT6/moc_mainwindow.cpp"
