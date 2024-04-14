@@ -1,4 +1,3 @@
-
 import unittest
 import sys
 import os
@@ -6,7 +5,6 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from Engine.engine import RoutheEngine as Engine
-
 
 
 class TestEngine(unittest.TestCase):
@@ -58,27 +56,26 @@ class TestEngine(unittest.TestCase):
     def test_get_first_row_1(self):
         coefficients_array = [1, 2, 3, 4]
         engine = Engine(coefficients_array)
-        self.assertEqual(engine.get_first_row(), [1, 3, 0])
+        self.assertEqual(engine.get_first_row(coefficients_array), [1, 3, 0])
     
     def test_get_first_row_2(self):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
-        self.assertEqual(engine.get_first_row(), [1, 3, 5, 0])
+        self.assertEqual(engine.get_first_row(coefficients_array), [1, 3, 5, 0])
     
     def test_get_second_row_1(self):
         coefficients_array = [1, 2, 3, 4]
         engine = Engine(coefficients_array)
-        self.assertEqual(engine.get_second_row(), [2, 4, 0])
+        self.assertEqual(engine.get_second_row(coefficients_array), [2, 4, 0])
     
     def test_get_second_row_2(self):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
-        self.assertEqual(engine.get_second_row(), [2, 4, 0])
-
+        self.assertEqual(engine.get_second_row(coefficients_array), [2, 4, 0])
 
     def test_get_next_element_1(self):
         table = [[1, 31, 0], [10, 1030, 0]]
-        engine = Engine([1])
+        engine = Engine([])
         res = engine.get_next_element(table, 2, 0)
         self.assertEqual(res, -72)
 
@@ -92,8 +89,6 @@ class TestEngine(unittest.TestCase):
 
         res = engine.get_next_element(table, 3, 1)
         self.assertEqual(res, 0)
-
-
 
     def test_get_next_element_2(self):
         coefficients_array = [1]
@@ -115,7 +110,6 @@ class TestEngine(unittest.TestCase):
         table = [[1, 3, 5, 0], [2, 4, 0, 0], [1, 5, 0, 0], [-6, 0, 0, 0]]
         res = engine.get_next_element(table, 4, 0)
         self.assertEqual(res, 5)
-
 
     def test_get_next_row_1(self):
         coefficients_array = [1]
@@ -146,15 +140,14 @@ class TestEngine(unittest.TestCase):
     def test_get_routhe_table_1(self):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
-        res = engine.get_routhe_table()
+        res = engine.get_routhe_table(coefficients_array, 4)
         self.assertEqual(res, [[1, 3, 5, 0], [2, 4, 0], [1, 5, 0], [-6, 0, 0], [5, 0, 0]])
 
     def test_get_routhe_table_2(self):
         coefficients_array = [1, 10, 31, 1030]
         engine = Engine(coefficients_array)
-        res = engine.get_routhe_table()
-        self.assertEqual(res, [[1, 31, 0], [10, 1030, 0], [-72, 0, 0], [1030, 0, 0]]) # without dividing the second row by 10 as in reference
-
+        res = engine.get_routhe_table(coefficients_array, 3)
+        self.assertEqual(res, [[1, 31, 0], [10, 1030, 0], [-72, 0, 0], [1030, 0, 0]])
 
     def test_get_number_of_sign_changes_1(self):
         coefficients_array = [1, 2, 3, 4, 5]
@@ -173,47 +166,42 @@ class TestEngine(unittest.TestCase):
     def test_check_stability_1(self):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
-        res = engine.check_stability()
+        res, table = engine.check_stability()
         self.assertFalse(res)
-
 
     def test_check_stability_2(self):
         coefficients_array = [1, 10, 31, 1030]
         engine = Engine(coefficients_array)
-        res = engine.check_stability()
+        res, table = engine.check_stability()
         self.assertFalse(res)
 
     def test_check_stability_3(self):
         coefficients_array = [1, 2, 3, 4]
         engine = Engine(coefficients_array)
-        res = engine.check_stability()
+        res, table = engine.check_stability()
         self.assertTrue(res)        
 
-    
     def test_check_stability_4(self):
         coefficients_array = [1, 0, 3, 2, 5]
         engine = Engine(coefficients_array)
-        res = engine.check_stability()
+        res, table = engine.check_stability()
         self.assertFalse(res)
 
     def test_check_stability_5(self):
         coefficients_array = [1, 1, 3, 1, 0]
         engine = Engine(coefficients_array)
-        res = engine.check_stability()
+        res, table = engine.check_stability()
         self.assertTrue(res)
 
     def test_get_poles_1(self):
         coefficients_array = [1, 2, 3, 4, 5]
         engine = Engine(coefficients_array)
         try:
-            engine.get_poles()
+            engine.get_poles(coefficients_array)
         except AssertionError as e:
             self.assertFalse(True)
-        res = engine.get_poles()
+        res = engine.get_poles(coefficients_array)
         self.assertTrue(all(x.real > 0 for x in res))
-        
-        
-        
 
 
 if __name__ == '__main__':
