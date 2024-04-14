@@ -134,7 +134,6 @@ dmypy.json
 *.com
 *.class
 *.dll
-*.exe
 *.o
 *.so
 
