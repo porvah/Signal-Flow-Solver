@@ -47,5 +47,3 @@ if __name__ == '__main__':
 
     print("Tests passed: ", num_tests - len(failed_tests), "/", num_tests)
 
-
-print(Checker().num_of_positive_poles([-1, 0, -7]) == 0)

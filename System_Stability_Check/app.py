@@ -8,6 +8,12 @@ if __name__ == '__main__':
     is_stable, table = engine.check_stability()
     print("Stable" if is_stable else "Unstable")
     print("Routhe table:")
+    
 
     for row in table:
         print(row)
+    poles = engine.get_poles(input)
+    if(poles):
+        print("Positive Poles: ")
+        for pole in poles:
+            print(pole)
