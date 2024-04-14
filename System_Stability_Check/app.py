@@ -14,6 +14,7 @@ if __name__ == '__main__':
         print(row)
     poles = engine.get_poles(input)
     if(poles):
+        print("Number of poles: ", len(poles))
         print("Positive Poles: ")
         for pole in poles:
             print(pole)
