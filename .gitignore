@@ -133,7 +133,6 @@ dmypy.json
 ###################
 *.com
 *.class
-*.dll
 *.o
 *.so
 
