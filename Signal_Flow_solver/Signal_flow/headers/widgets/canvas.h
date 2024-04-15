@@ -32,6 +32,7 @@ private:
     string node1Name;
     string node2Name;
     QPoint animationStartPos;
+    QPoint animationCurrentPos;
     bool animationStarted;
     map<string, vector<pair<string, double>>> inputGraph;
     vector<pair<string, QPoint>> nodes;
