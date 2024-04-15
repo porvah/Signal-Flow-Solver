@@ -48,7 +48,9 @@ void CanvasWidget::paintEvent(QPaintEvent *)
     for(int i = 0; i < nodes.size(); i++){
         this->drawNode(nodes[i].second, nodes[i].first, &painter);
     }
+
     painter.restore();
+    if(animationStarted == true) this->drawArrow(0, pair(this->animationStartPos, this->animationCurrentPos), &painter);
 
 }
 
@@ -56,6 +58,7 @@ void CanvasWidget::mousePressEvent(QMouseEvent *event)
 {
     QPoint p = this->mapFromGlobal(QCursor::pos());
     if(event->type()==QMouseEvent::MouseButtonPress && state == Node){
+        string nodeName = this->searchForNode(this->mapFromGlobal(QCursor::pos()));
         this->addNode(p, "def");
     }else if(event->type()==QMouseEvent::MouseButtonPress && state == Arrow){
         mouseDownState = true;
@@ -66,7 +69,6 @@ void CanvasWidget::mousePressEvent(QMouseEvent *event)
         }else{
             animationStarted = false;
         }
-        // test here <----------------------------------------------------------------------------------------------------
     }
 }
 
@@ -81,15 +83,16 @@ void CanvasWidget::mouseReleaseEvent(QMouseEvent *event)
                 QPoint pos2 = this->getNodePos(node2Name);
                 gainInputDialog->clearField();
                 int status = gainInputDialog->exec();
-                if (status == 0)
-                    return;
-                double gain = gainInputDialog->getGain();
-                this->addArrow(gain, node1Name, node2Name, pair(pos1, pos2));
+                if (status != 0){
+                    double gain = gainInputDialog->getGain();
+                    this->addArrow(gain, node1Name, node2Name, pair(pos1, pos2));
+                }
             }
         }
         animationStarted = false;
     }
     mouseDownState = false;
+    animationStarted = false;
     node1Name = "none";
     node2Name = "none";
     update();
@@ -99,10 +102,8 @@ void CanvasWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->type()==QMouseEvent::MouseMove && state == Arrow && mouseDownState == true && animationStarted){
         QPoint currentPos = this->mapFromGlobal(QCursor::pos());
-        QPainter painter(this);
-        //this->drawArrow(0, pair(animationStartPos, currentPos), &painter);
+        this->animationCurrentPos = currentPos;
         update();
-//        // test here <----------------------------------------------------------------------------------------------------
     }
 
 }
@@ -265,9 +266,6 @@ void CanvasWidget::drawArrow(double gain, pair<QPoint, QPoint> arrow, QPainter *
       start = -60*16;
       span = -60*16;
     }
-    // The day I wrote this code only me and God knew how it worked
-    // Now only God knows
-    // Please don't try to edit
     float deg = ltr? atan2(dist.y()-src.y(), dist.x()-src.x())*180/M_PI : atan2(src.y()-dist.y(), src.x()-dist.x())*180/M_PI;
     QLineF line1;
     QLineF line2;
